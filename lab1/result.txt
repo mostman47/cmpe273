@@ -1,0 +1,158 @@
+### not start web server yet
+
+ubuntu@ip-172-31-24-252:~$ python socket-mon.py
+pid,laddr,raddr,status
+None, '172.31.24.252@22', '38.112.59.130@35793', 'ESTABLISHED'
+None, '172.31.24.252@22', '38.112.59.130@37686', 'ESTABLISHED'
+None, '172.31.24.252@22', '38.112.59.130@47619', 'ESTABLISHED'
+
+### start web server
+
+ubuntu@ip-172-31-24-252:~$ python -m SimpleHTTPServer
+Serving HTTP on 0.0.0.0 port 8000 ...
+127.0.0.1 - - [16/Feb/2017 21:10:42] "GET / HTTP/1.1" 200 -
+
+ubuntu@ip-172-31-24-252:~$ curl -i http://localhost:8000/
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/2.7.12
+Date: Thu, 16 Feb 2017 21:10:42 GMT
+Content-type: text/html
+Content-Length: 12
+Last-Modified: Thu, 16 Feb 2017 21:06:11 GMT
+
+Hello World
+
+ubuntu@ip-172-31-24-252:~$ python socket-mon.py
+pid,laddr,raddr,status
+None, '172.31.24.252@22', '38.112.59.130@37686', 'ESTABLISHED'
+None, '127.0.0.1@8000', '127.0.0.1@36934', 'TIME_WAIT'
+None, '172.31.24.252@22', '38.112.59.130@47619', 'ESTABLISHED'
+None, '172.31.24.252@22', '38.112.59.130@35793', 'ESTABLISHED'
+
+ubuntu@ip-172-31-24-252:~$ ps ax
+  PID TTY      STAT   TIME COMMAND
+    1 ?        Ss     0:03 /sbin/init
+    2 ?        S      0:00 [kthreadd]
+    3 ?        S      0:00 [ksoftirqd/0]
+    4 ?        S      0:00 [kworker/0:0]
+    5 ?        S<     0:00 [kworker/0:0H]
+    7 ?        S      0:00 [rcu_sched]
+    8 ?        S      0:00 [rcu_bh]
+    9 ?        S      0:00 [migration/0]
+   10 ?        S      0:00 [watchdog/0]
+   11 ?        S      0:00 [kdevtmpfs]
+   12 ?        S<     0:00 [netns]
+   13 ?        S<     0:00 [perf]
+   14 ?        S      0:00 [xenwatch]
+   15 ?        S      0:00 [xenbus]
+   17 ?        S      0:00 [khungtaskd]
+   18 ?        S<     0:00 [writeback]
+   19 ?        SN     0:00 [ksmd]
+   20 ?        SN     0:00 [khugepaged]
+   21 ?        S<     0:00 [crypto]
+   22 ?        S<     0:00 [kintegrityd]
+   23 ?        S<     0:00 [bioset]
+   24 ?        S<     0:00 [kblockd]
+   25 ?        S<     0:00 [ata_sff]
+   26 ?        S<     0:00 [md]
+   27 ?        S<     0:00 [devfreq_wq]
+   28 ?        S      0:00 [kworker/u30:1]
+   30 ?        S      0:00 [kswapd0]
+   31 ?        S<     0:00 [vmstat]
+   32 ?        S      0:00 [fsnotify_mark]
+   33 ?        S      0:00 [ecryptfs-kthrea]
+   49 ?        S<     0:00 [kthrotld]
+   50 ?        S<     0:00 [acpi_thermal_pm]
+   51 ?        S<     0:00 [bioset]
+   52 ?        S<     0:00 [bioset]
+   53 ?        S<     0:00 [bioset]
+   54 ?        S<     0:00 [bioset]
+   55 ?        S<     0:00 [bioset]
+   56 ?        S<     0:00 [bioset]
+   57 ?        S<     0:00 [bioset]
+   58 ?        S<     0:00 [bioset]
+   59 ?        S<     0:00 [bioset]
+   60 ?        S<     0:00 [bioset]
+   61 ?        S<     0:00 [bioset]
+   62 ?        S<     0:00 [bioset]
+   63 ?        S<     0:00 [bioset]
+   64 ?        S<     0:00 [bioset]
+   65 ?        S<     0:00 [bioset]
+   66 ?        S<     0:00 [bioset]
+   67 ?        S<     0:00 [bioset]
+   68 ?        S<     0:00 [bioset]
+   69 ?        S<     0:00 [bioset]
+   70 ?        S<     0:00 [bioset]
+   71 ?        S<     0:00 [bioset]
+   72 ?        S<     0:00 [bioset]
+   73 ?        S<     0:00 [bioset]
+   74 ?        S<     0:00 [bioset]
+   75 ?        S      0:00 [scsi_eh_0]
+   76 ?        S<     0:00 [scsi_tmf_0]
+   77 ?        S      0:00 [scsi_eh_1]
+   78 ?        S<     0:00 [scsi_tmf_1]
+   83 ?        S<     0:00 [ipv6_addrconf]
+   84 ?        S<     0:00 [bioset]
+   97 ?        S<     0:00 [deferwq]
+   98 ?        S<     0:00 [charger_manager]
+  138 ?        S<     0:00 [bioset]
+  139 ?        S<     0:00 [bioset]
+  140 ?        S<     0:00 [bioset]
+  141 ?        S<     0:00 [bioset]
+  142 ?        S<     0:00 [bioset]
+  143 ?        S<     0:00 [bioset]
+  144 ?        S<     0:00 [bioset]
+  145 ?        S<     0:00 [bioset]
+  146 ?        S<     0:00 [kpsmoused]
+  263 ?        S<     0:00 [raid5wq]
+  298 ?        S<     0:00 [bioset]
+  322 ?        S      0:00 [jbd2/xvda1-8]
+  323 ?        S<     0:00 [ext4-rsv-conver]
+  380 ?        Ss     0:00 /lib/systemd/systemd-journald
+  405 ?        S<     0:00 [iscsi_eh]
+  407 ?        S<     0:00 [ib_addr]
+  408 ?        S      0:00 [kauditd]
+  411 ?        S<     0:00 [ib_mcast]
+  412 ?        S<     0:00 [ib_nl_sa_wq]
+  414 ?        S<     0:00 [ib_cm]
+  416 ?        S<     0:00 [iw_cm_wq]
+  417 ?        S<     0:00 [rdma_cm]
+  438 ?        Ss     0:00 /sbin/lvmetad -f
+  472 ?        Ss     0:00 /lib/systemd/systemd-udevd
+  558 ?        Ssl    0:00 /lib/systemd/systemd-timesyncd
+  588 ?        S<     0:00 [kworker/0:1H]
+  951 ?        Ss     0:00 /sbin/dhclient -1 -v -pf /run/dhclient.eth0.pid -lf /var/lib/dhcp/dhclient.eth0.leases -I -df /var/lib/dhcp/
+ 1107 ?        Ss     0:01 /sbin/iscsid
+ 1108 ?        Ss     0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+ 1109 ?        S<Ls   0:05 /sbin/iscsid
+ 1113 ?        Ssl    0:00 /usr/bin/lxcfs /var/lib/lxcfs/
+ 1118 ?        Ss     0:00 /usr/sbin/atd -f
+ 1121 ?        Ss     0:00 /usr/sbin/acpid
+ 1123 ?        Ssl    0:00 /usr/lib/accountsservice/accounts-daemon
+ 1124 ?        Ssl    0:00 /usr/sbin/rsyslogd -n
+ 1139 ?        Ss     0:00 /usr/sbin/cron -f
+ 1141 ?        Ss     0:00 /lib/systemd/systemd-logind
+ 1160 ?        Ssl    0:00 /usr/lib/snapd/snapd
+ 1199 ?        Ssl    0:00 /usr/lib/policykit-1/polkitd --no-debug
+ 1215 ?        Ss     0:00 /sbin/mdadm --monitor --pid-file /run/mdadm/monitor.pid --daemonise --scan --syslog
+ 1283 ttyS0    Ss+    0:00 /sbin/agetty --keep-baud 115200 38400 9600 ttyS0 vt220
+ 1285 tty1     Ss+    0:00 /sbin/agetty --noclear tty1 linux
+ 1344 ?        Ss     0:00 /usr/sbin/sshd -D
+ 1392 ?        S      0:00 [kworker/0:1]
+ 1911 ?        Ss     0:00 sshd: ubuntu [priv]
+ 1913 ?        Ss     0:00 /lib/systemd/systemd --user
+ 1916 ?        S      0:00 (sd-pam)
+ 1969 ?        S      0:00 sshd: ubuntu@notty
+ 1972 ?        Ss     0:00 /usr/lib/openssh/sftp-server
+ 1979 ?        Ss     0:00 sshd: ubuntu [priv]
+ 2010 ?        S      0:00 sshd: ubuntu@pts/0
+ 2011 pts/0    Ss     0:00 -bash
+12272 ?        S      0:00 [kworker/u30:2]
+18014 ?        Ss     0:00 sshd: ubuntu [priv]
+18045 ?        S      0:00 sshd: ubuntu@pts/1
+18046 pts/1    Ss     0:00 -bash
+18135 pts/0    S+     0:00 python -m SimpleHTTPServer
+18150 pts/1    R+     0:00 ps ax
+
+PID is 18135 
+
