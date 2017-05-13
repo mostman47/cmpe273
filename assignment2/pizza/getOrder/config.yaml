@@ -1,6 +1,6 @@
 region: us-west-2
 
-function_name: updateMenu1
+function_name: getOrder1
 handler: service.handler
 role: pizzashop-role
 description: My first lambda function

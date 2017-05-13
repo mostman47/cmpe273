@@ -1,0 +1,10 @@
+{
+  "menu_id": "3",
+  "update": {
+    "selection": [
+      "Cheese",
+      "Pepperoni",
+      "Vegetable"
+    ]
+  }
+}
